@@ -1,0 +1,1236 @@
+{
+	"info": {
+		"_postman_id": "6de2e3db-a842-491e-8bf6-d55d77c70946",
+		"name": "Todoist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TASKS",
+			"item": [
+				{
+					"name": "Positive Scenarios",
+					"item": [
+						{
+							"name": "Get Active Tasks",
+							"item": [
+								{
+									"name": "Get Active Tasks",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Content-Type is present and it is application/json\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"    const contentType = pm.response.headers.get('content-type');\r",
+													"    pm.expect(contentType, \"Content-Type is not application/json\").to.eql('application/json')\r",
+													"});\r",
+													"const schema = {\r",
+													"    \"type\": \"array\",\r",
+													"    \"items\": {\r",
+													"        \"$id\": \"#/items\",\r",
+													"        \"anyOf\": [\r",
+													"            {\r",
+													"                \"$id\": \"#/items/anyOf/0\",\r",
+													"                \"type\": \"object\",\r",
+													"                \"required\": [\r",
+													"                    \"id\",\r",
+													"                    \"assigner\",\r",
+													"                    \"project_id\",\r",
+													"                    \"section_id\",\r",
+													"                    \"order\",\r",
+													"                    \"content\",\r",
+													"                    \"completed\",\r",
+													"                    \"label_ids\",\r",
+													"                    \"priority\",\r",
+													"                    \"comment_count\",\r",
+													"                    \"creator\",\r",
+													"                    \"created\",\r",
+													"                    \"url\"\r",
+													"                ],\r",
+													"                \"properties\": {\r",
+													"                    \"id\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/id\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"assigner\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/assigner\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"project_id\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/project_id\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"section_id\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/section_id\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"order\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/order\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"content\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/content\",\r",
+													"                        \"type\": \"string\"\r",
+													"                    },\r",
+													"                    \"completed\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/completed\",\r",
+													"                        \"type\": \"boolean\"\r",
+													"                    },\r",
+													"                    \"label_ids\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/label_ids\",\r",
+													"                        \"type\": \"array\",\r",
+													"                        \"items\": {\r",
+													"                            \"$id\": \"#/items/anyOf/0/properties/label_ids/items\"\r",
+													"                        }\r",
+													"                    },\r",
+													"                    \"priority\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/priority\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"comment_count\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/comment_count\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"creator\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/creator\",\r",
+													"                        \"type\": \"integer\"\r",
+													"                    },\r",
+													"                    \"created\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/created\",\r",
+													"                        \"type\": \"string\"\r",
+													"                    },\r",
+													"                    \"url\": {\r",
+													"                        \"$id\": \"#/items/anyOf/0/properties/url\",\r",
+													"                        \"type\": \"string\"\r",
+													"                    }\r",
+													"                }\r",
+													"            }\r",
+													"        ]\r",
+													"    }\r",
+													"};\r",
+													"pm.test(\"Validate schema\", () => {\r",
+													"pm.response.to.have.jsonSchema(schema);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create Task",
+							"item": [
+								{
+									"name": "Create Task",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Content-Type is present and it is application/json\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"    const contentType = pm.response.headers.get('content-type');\r",
+													"    pm.expect(contentType, \"Content-Type is not application/json\").to.eql('application/json')\r",
+													"});\r",
+													"\r",
+													"var jsonDataRes = pm.response.json();\r",
+													"var content = pm.variables.get(\"taskName\");\r",
+													"\r",
+													"pm.test(\"Task Name is correct\", function () {\r",
+													"    pm.expect(jsonDataRes.content).to.eql(content);\r",
+													"});\r",
+													"\r",
+													"var dueString = pm.variables.get(\"taskDueString\");\r",
+													"pm.test(\"Task Due is correct\", function () {\r",
+													"    pm.expect(jsonDataRes.due.string).to.eql(dueString);\r",
+													"});\r",
+													"\r",
+													"var taskPriority = pm.variables.get(\"taskPriority\");\r",
+													"pm.test(\"Task Priority is correct\", function () {\r",
+													"    pm.expect(jsonDataRes.priority).to.eql(parseInt(taskPriority));\r",
+													"});\r",
+													"\r",
+													"const schema = {\r",
+													"    \"type\": \"object\",\r",
+													"    \"required\": [\r",
+													"        \"id\",\r",
+													"        \"assigner\",\r",
+													"        \"project_id\",\r",
+													"        \"section_id\",\r",
+													"        \"order\",\r",
+													"        \"content\",\r",
+													"        \"completed\",\r",
+													"        \"label_ids\",\r",
+													"        \"priority\",\r",
+													"        \"comment_count\",\r",
+													"        \"creator\",\r",
+													"        \"created\",\r",
+													"        \"due\",\r",
+													"        \"url\"\r",
+													"    ],\r",
+													"    \"properties\": {\r",
+													"        \"id\": {\r",
+													"            \"$id\": \"#/properties/id\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"assigner\": {\r",
+													"            \"$id\": \"#/properties/assigner\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"project_id\": {\r",
+													"            \"$id\": \"#/properties/project_id\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"section_id\": {\r",
+													"            \"$id\": \"#/properties/section_id\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"order\": {\r",
+													"            \"$id\": \"#/properties/order\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"content\": {\r",
+													"            \"$id\": \"#/properties/content\",\r",
+													"            \"type\": \"string\"\r",
+													"        },\r",
+													"        \"completed\": {\r",
+													"            \"$id\": \"#/properties/completed\",\r",
+													"            \"type\": \"boolean\"\r",
+													"        },\r",
+													"        \"label_ids\": {\r",
+													"            \"$id\": \"#/properties/label_ids\",\r",
+													"            \"type\": \"array\",\r",
+													"            \"items\": {\r",
+													"                \"$id\": \"#/properties/label_ids/items\"\r",
+													"            }\r",
+													"        },\r",
+													"        \"priority\": {\r",
+													"            \"$id\": \"#/properties/priority\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"comment_count\": {\r",
+													"            \"$id\": \"#/properties/comment_count\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"creator\": {\r",
+													"            \"$id\": \"#/properties/creator\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"created\": {\r",
+													"            \"$id\": \"#/properties/created\",\r",
+													"            \"type\": \"string\"\r",
+													"        },\r",
+													"        \"due\": {\r",
+													"            \"$id\": \"#/properties/due\",\r",
+													"            \"type\": \"object\",\r",
+													"            \"required\": [\r",
+													"                \"recurring\",\r",
+													"                \"string\",\r",
+													"                \"date\",\r",
+													"                \"datetime\",\r",
+													"                \"timezone\"\r",
+													"            ],\r",
+													"            \"properties\": {\r",
+													"                \"recurring\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/recurring\",\r",
+													"                    \"type\": \"boolean\"\r",
+													"                },\r",
+													"                \"string\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/string\",\r",
+													"                    \"type\": \"string\"\r",
+													"                },\r",
+													"                \"date\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/date\",\r",
+													"                    \"type\": \"string\"\r",
+													"                },\r",
+													"                \"datetime\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/datetime\",\r",
+													"                    \"type\": \"string\"\r",
+													"                },\r",
+													"                \"timezone\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/timezone\",\r",
+													"                    \"type\": \"string\"\r",
+													"                }\r",
+													"            }\r",
+													"        },\r",
+													"        \"url\": {\r",
+													"            \"$id\": \"#/properties/url\",\r",
+													"            \"type\": \"string\"\r",
+													"        }\r",
+													"    }\r",
+													"};\r",
+													"pm.test(\"Validate schema\", () => {\r",
+													"pm.response.to.have.jsonSchema(schema);\r",
+													"});\r",
+													"\r",
+													"pm.environment.set(\"taskId\", jsonDataRes.id);\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Requested-Id",
+												"value": "$(uuidgen)",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"content\": \"{{taskName}}\",\r\n    \"due_string\": \"{{taskDueString}}\",\r\n    \"due_lang\": \"en\",\r\n    \"priority\": {{taskPriority}}\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/tasks",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Active Task",
+							"item": [
+								{
+									"name": "Get Task",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Content-Type is present and it is application/json\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"    const contentType = pm.response.headers.get('content-type');\r",
+													"    pm.expect(contentType, \"Content-Type is not application/json\").to.eql('application/json')\r",
+													"});\r",
+													"\r",
+													"var id = pm.environment.get(\"taskId\");\r",
+													"pm.test(\"Task Id is correct\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.id).to.eql(id);\r",
+													"});\r",
+													"\r",
+													"const schema = {\r",
+													"    \"type\": \"object\",\r",
+													"    \"required\": [\r",
+													"        \"id\",\r",
+													"        \"assigner\",\r",
+													"        \"project_id\",\r",
+													"        \"section_id\",\r",
+													"        \"order\",\r",
+													"        \"content\",\r",
+													"        \"completed\",\r",
+													"        \"label_ids\",\r",
+													"        \"priority\",\r",
+													"        \"comment_count\",\r",
+													"        \"creator\",\r",
+													"        \"created\",\r",
+													"        \"due\",\r",
+													"        \"url\"\r",
+													"    ],\r",
+													"    \"properties\": {\r",
+													"        \"id\": {\r",
+													"            \"$id\": \"#/properties/id\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"assigner\": {\r",
+													"            \"$id\": \"#/properties/assigner\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"project_id\": {\r",
+													"            \"$id\": \"#/properties/project_id\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"section_id\": {\r",
+													"            \"$id\": \"#/properties/section_id\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"order\": {\r",
+													"            \"$id\": \"#/properties/order\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"content\": {\r",
+													"            \"$id\": \"#/properties/content\",\r",
+													"            \"type\": \"string\"\r",
+													"        },\r",
+													"        \"completed\": {\r",
+													"            \"$id\": \"#/properties/completed\",\r",
+													"            \"type\": \"boolean\"\r",
+													"        },\r",
+													"        \"label_ids\": {\r",
+													"            \"$id\": \"#/properties/label_ids\",\r",
+													"            \"type\": \"array\",\r",
+													"            \"items\": {\r",
+													"                \"$id\": \"#/properties/label_ids/items\"\r",
+													"            }\r",
+													"        },\r",
+													"        \"priority\": {\r",
+													"            \"$id\": \"#/properties/priority\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"comment_count\": {\r",
+													"            \"$id\": \"#/properties/comment_count\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"creator\": {\r",
+													"            \"$id\": \"#/properties/creator\",\r",
+													"            \"type\": \"integer\"\r",
+													"        },\r",
+													"        \"created\": {\r",
+													"            \"$id\": \"#/properties/created\",\r",
+													"            \"type\": \"string\"\r",
+													"        },\r",
+													"        \"due\": {\r",
+													"            \"$id\": \"#/properties/due\",\r",
+													"            \"type\": \"object\",\r",
+													"            \"required\": [\r",
+													"                \"recurring\",\r",
+													"                \"string\",\r",
+													"                \"date\",\r",
+													"                \"datetime\",\r",
+													"                \"timezone\"\r",
+													"            ],\r",
+													"            \"properties\": {\r",
+													"                \"recurring\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/recurring\",\r",
+													"                    \"type\": \"boolean\"\r",
+													"                },\r",
+													"                \"string\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/string\",\r",
+													"                    \"type\": \"string\"\r",
+													"                },\r",
+													"                \"date\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/date\",\r",
+													"                    \"type\": \"string\"\r",
+													"                },\r",
+													"                \"datetime\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/datetime\",\r",
+													"                    \"type\": \"string\"\r",
+													"                },\r",
+													"                \"timezone\": {\r",
+													"                    \"$id\": \"#/properties/due/properties/timezone\",\r",
+													"                    \"type\": \"string\"\r",
+													"                }\r",
+													"            }\r",
+													"        },\r",
+													"        \"url\": {\r",
+													"            \"$id\": \"#/properties/url\",\r",
+													"            \"type\": \"string\"\r",
+													"        }\r",
+													"    }\r",
+													"};\r",
+													"pm.test(\"Validate schema\", () => {\r",
+													"pm.response.to.have.jsonSchema(schema);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update Task",
+							"item": [
+								{
+									"name": "Update Task",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Requested-Id",
+												"value": "$(uuidgen)",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"content\": \"Buy Coffee\"\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Close Task",
+							"item": [
+								{
+									"name": "Close Task",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}/close",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}",
+												"close"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Reopen Task",
+							"item": [
+								{
+									"name": "Reopen Task",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}/reopen",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}",
+												"reopen"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Delete Task",
+							"item": [
+								{
+									"name": "Delete Task",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 2xx\", function () {",
+									"    pm.response.to.be.success;",
+									"});",
+									"pm.test(\"Response time is less than \"+pm.variables.get(\"responseTime\")+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(pm.variables.get(\"responseTime\"));",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Negative Scenarios",
+					"item": [
+						{
+							"name": "Get Active Tasks",
+							"item": [
+								{
+									"name": "Get Active Tasks - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create Task",
+							"item": [
+								{
+									"name": "Create Task - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Requested-Id",
+												"value": "$(uuidgen)",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"content\": \"{{taskName}}\",\r\n    \"due_string\": \"{{taskDueString}}\",\r\n    \"due_lang\": \"en\",\r\n    \"priority\": {{taskPriority}}\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/tasks",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Task - No Content",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Requested-Id",
+												"value": "$(uuidgen)",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"due_string\": \"{{taskDueString}}\",\r\n    \"due_lang\": \"en\",\r\n    \"priority\": {{taskPriority}}\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/tasks",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Active Task",
+							"item": [
+								{
+									"name": "Get Task - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Task - Invalid Task",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.notFound;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/invalidtask",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"invalidtask"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update Task",
+							"item": [
+								{
+									"name": "Update Task - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Requested-Id",
+												"value": "$(uuidgen)",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"content\": \"Buy Coffee\"\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Task - Invalid Task",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.notFound;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Requested-Id",
+												"value": "$(uuidgen)",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"content\": \"Buy Coffee\"\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/tasks/invalidtask",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"invalidtask"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Close Task",
+							"item": [
+								{
+									"name": "Close Task - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}/close",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}",
+												"close"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Close Task - Invalid Task",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.notFound;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/invalidtask/close",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"invalidtask",
+												"close"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Reopen Task",
+							"item": [
+								{
+									"name": "Reopen Task - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}/reopen",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}",
+												"reopen"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Reopen Task - Invalid Task",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.notFound;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/invalidtask/reopen",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"invalidtask",
+												"reopen"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Delete Task",
+							"item": [
+								{
+									"name": "Delete Task - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.badRequest;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/{{taskId}}",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"{{taskId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Task - Invalid Task",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 4xx\", function () {\r",
+													"    pm.response.to.be.notFound;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/tasks/invalidtask",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"tasks",
+												"invalidtask"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Response time is less than \"+pm.variables.get(\"responseTime\")+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(pm.variables.get(\"responseTime\"));",
+									"});"
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

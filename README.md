@@ -23,5 +23,5 @@ Execute below command in VSCode's terminal to run all the **Create Tasks Data Dr
 </br>`npx newman run ./YOUR_APP/tests/backEnd/collections/create_Tasks_DDT.json -e ./YOUR_APP/tests/backEnd/envVariables/env.json -r htmlextra --reporter-htmlextra-export ./YOUR_APP/tests/backEnd/reports/report.html -d ./YOUR_APP/tests/backEnd/data/tasks.csv --env-var token="{your_todoist_token}"` \*
 
 </br>*\*Replace `{your_todoist_token}` with a valid todoist-api Auth token.*
-</br>*HTML report will be published in below path*:
+</br></br>*HTML report will be published in below path*:
 </br>`YOUR_APP/tests/backEnd/reports/report.html`
